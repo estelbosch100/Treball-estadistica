@@ -7,24 +7,24 @@ _Gabriel Romero i Estel Bosch - U1966628 i U1966682_
 * **Pregunta 1: Comenta en detall cada un dels següents chunks utilitzats pel processament de dades:**
 
 
-    * **Y_b07 = filter(dowid, DAY - days(7) < date, date <= DAY):** 
+      Y_b07 = filter(dowid, DAY - days(7) < date, date <= DAY): 
 El què ens fa aquesta comanda és filtrar i mostrar totes les dades recopilades en un dia concret (utilitzant el codi U1966628 obtenim la data 13/06), en el nostre cas, el 13 de Juny.
 
-    * **Y_b07 = group_by(Y_b07, iso_code, country = location) i Y_b07 = summarise(Y_b07, .groups = 'drop', cases_b7 = mean(new_cases, na.rm = TRUE)):**
+     Y_b07 = group_by(Y_b07, iso_code, country = location) i Y_b07 = summarise(Y_b07, .groups = 'drop', cases_b7 = mean(new_cases, na.rm = TRUE)):
     
- Aquestes dues comandes, el què fan és agrupar-nos les dades en tres variables que són: Les sigles del país, els diferents països dels quals s'ha enregistrat les dades en un dia concret i aquest mateix dia. (Y_b07: dia, iso_code: sigles del país, country: país).
+Aquestes dues comandes, el què fan és agrupar-nos les dades en tres variables que són: Les sigles del país, els diferents països dels quals s'ha enregistrat les dades en un dia concret i aquest mateix dia. (Y_b07: dia, iso_code: sigles del país, country: país).
 
-    * **Y_b07 = filter(Y_b07, cases_b7 > 0):** 
+     Y_b07 = filter(Y_b07, cases_b7 > 0): 
     
-  Ens ha acotat tots els països que tenen casos de covid.
+ Ens ha acotat tots els països que tenen casos de covid.
    
-    * **Y_f07 = dowid %>%
-  filter(DAY < date, date <= DAY + days(7)) %>%
-  group_by(iso_code) %>%
-  summarise(.groups = 'drop', cases_f7 = mean(new_cases, na.rm = TRUE)) %>%
-  filter(cases_f7 > 0):**
+    Y_f07 = dowid %>%
+    filter(DAY < date, date <= DAY + days(7)) %>%
+    group_by(iso_code) %>%
+    summarise(.groups = 'drop', cases_f7 = mean(new_cases, na.rm = TRUE)) %>%
+    filter(cases_f7 > 0):
   
-  Crea un nou data_frame que es diu Y_f07 a partir de la taula que ja teníem construïda. Aquest nou data frame es crea gràcies a la crida de diferents funcions com: la filtració del dia del qual es volen les dades, l'agrupació o group by de dades segons les sigles del país en què s'han observat, amb summarise podem obtenir la mitjana dels nous casos de covid i, finalment, a aquesta última funció se'n filtren els casos perquè siguin estrictement majors a 0 casos de covid.
+Crea un nou data_frame que es diu Y_f07 a partir de la taula que ja teníem construïda. Aquest nou data frame es crea gràcies a la crida de diferents funcions com: la filtració del dia del qual es volen les dades, l'agrupació o group by de dades segons les sigles del país en què s'han observat, amb summarise podem obtenir la mitjana dels nous casos de covid i, finalment, a aquesta última funció se'n filtren els casos perquè siguin estrictement majors a 0 casos de covid.
     
 
 * **Pregunta 2: Prepara el conjunt de dades _data_ per a ser analitzat segons les característiques de les variables. Explica les decisions que prens i quina és la tipologia de les variables que té el teu conjunt de dades.**
