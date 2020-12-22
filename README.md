@@ -7,11 +7,12 @@ _Gabriel Romero i Estel Bosch - U1966628 i U1966682_
 * **Pregunta 1: Comenta en detall cada un dels següents chunks utilitzats pel processament de dades:**
 
 
-    * Y_b07 = filter(dowid, DAY - days(7) < date, date <= DAY):
+    * **Y_b07 = filter(dowid, DAY - days(7) < date, date <= DAY):** 
 El què ens fa aquesta comanda és filtrar i mostrar totes les dades recopilades en un dia concret (utilitzant el codi U1966628 obtenim la data 13/06), en el nostre cas, el 13 de Juny.
 
-    * Y_b07 = group_by(Y_b07, iso_code, country = location)
-    * Y_b07 = summarise(Y_b07, .groups = 'drop', cases_b7 = mean(new_cases, na.rm = TRUE))
+    * **Y_b07 = group_by(Y_b07, iso_code, country = location):**
+    
+    * **Y_b07 = summarise(Y_b07, .groups = 'drop', cases_b7 = mean(new_cases, na.rm = TRUE)):**
 
 
     
