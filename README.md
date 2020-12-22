@@ -1,4 +1,5 @@
 # TREBALL FINAL D'ESTADÍSTICA
+{Gabriel Romero i Estel Bosch - U1966628 i U1966682}
 
 ## PREGUNTA 1 I 2: Processament del conjunt de dades a analitzar
 
