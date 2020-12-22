@@ -4,6 +4,7 @@ _Gabriel Romero i Estel Bosch - U1966628 i U1966682_
 ## PREGUNTA 1 I 2: Processament del conjunt de dades a analitzar
 
 * **Pregunta 1: Comenta en detall cada un dels següents chunks utilitzats pel processament de dades:**
+    *Y_b07 = filter(dowid, DAY - days(7) < date, date <= DAY)
 
 * **Pregunta 2: Prepara el conjunt de dades _data_ per a ser analitzat segons les característiques de les variables. Explica les decisions que prens i quina és la tipologia de les variables que té el teu conjunt de dades.**
 
