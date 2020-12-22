@@ -13,8 +13,14 @@ El què ens fa aquesta comanda és filtrar i mostrar totes les dades recopilades
     * **Y_b07 = group_by(Y_b07, iso_code, country = location) i Y_b07 = summarise(Y_b07, .groups = 'drop', cases_b7 = mean(new_cases, na.rm = TRUE)):**
  Aquestes dues comandes, el què fan és agrupar-nos les dades en tres variables que són: Les sigles del país, els diferents països dels quals s'ha enregistrat les dades en un dia concret i aquest mateix dia. (Y_b07: dia, iso_code: sigles del país, country: país).
 
-
-    
+    * **Y_b07 = filter(Y_b07, cases_b7 > 0):** 
+  Ens ha acotat tots els països que tenen casos de covid.
+   
+    * **Y_f07 = dowid %>%
+  filter(DAY < date, date <= DAY + days(7)) %>%
+  group_by(iso_code) %>%
+  summarise(.groups = 'drop', cases_f7 = mean(new_cases, na.rm = TRUE)) %>%
+  filter(cases_f7 > 0):**
     
 
 * **Pregunta 2: Prepara el conjunt de dades _data_ per a ser analitzat segons les característiques de les variables. Explica les decisions que prens i quina és la tipologia de les variables que té el teu conjunt de dades.**
