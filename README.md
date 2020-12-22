@@ -1,2 +1,2 @@
-# Treball-estadistica
-Treball estadística
+# TREBALL FINAL D'ESTADÍSTICA
+
