@@ -29,7 +29,7 @@ Crea un nou data_frame que es diu Y_f07 a partir de la taula que ja teníem cons
      Y = inner_join(Y_b07, Y_f07, by = "iso_code") %>%
      mutate(y = log(cases_f7/cases_b7))
      
-En aquest cas, primer es crea una nova taula Y on hi ha les files coincidents (entre la taula Y_b07 i Y_f07) i les columnes d'aquestes, obtingudes amb la intersecció de les taules i a partir del camp comú iso_code. La segona funció fa que creem una nova variable on es calculi el logaritme de casos entre les dues taules, que probablement més endavant s'hagin de fer servir.
+En aquest cas, primer es crea una nova taula "Y" on hi ha les files coincidents (entre la taula Y_b07 i Y_f07) i les columnes d'aquestes, obtingudes amb la intersecció de les taules i amb l'ajuda del camp comú "iso_code" entre ambdues. La segona funció fa que creem una nova variable on es calculi el logaritme de casos entre les dues taules, que probablement més endavant s'hagin de fer servir.
 
 Return only the rows in which the left table have matching keys in the right table.
 * **Pregunta 2: Prepara el conjunt de dades _data_ per a ser analitzat segons les característiques de les variables. Explica les decisions que prens i quina és la tipologia de les variables que té el teu conjunt de dades.**
