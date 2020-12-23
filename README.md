@@ -86,7 +86,29 @@ Les dues variables principals són les següents:
     
     
 I com a relacions d'aquestes dues variables que acabem de veure, tenim:
-   - **Relació numèrica-numèrica:** Parlem d'una relació numèrica quan dues variables són quantitatives i es poden fer una sèrie d'operacions que ens donaran una xifra que les relacionarà. Un exemple ben clar d'aquesta relació fent servir la taula que ens brinden seria.
+   - **Relació numèrica-numèrica:** Parlem d'una relació numèrica quan dues variables són quantitatives i es poden fer una sèrie d'operacions que ens donaran una xifra que les relacionarà. 
+Començarem seleccionant de data les columnes que ens interessen per a calcular el percentatge de mortalitat segons el registre de casos covid a cada continent. Per diferenciar-ho de la relació numèrica-categòrica que veurem a continuació, el què farem serà tractar cada continent per separat, obtenint uns valors independents.
+
+Primer creem una _taula auxiliar_ on hi posarem aquelles columnes que ens interessen de la taula _data_ per a exemplificar la relació numèrica-numèrica. A continuació, filtrarem aquesta taula per continents (Àsia, Àfrica, Amèrica del Nord, Amèrica del Sud, Europa i Oceania):
+            
+            TaulaAux = select(data, continent, ConfirmedCases, ConfirmedDeaths)
+
+Filtratge per continent:
+            
+            africa_casos = filter(TaulaAux, continent == "Africa")
+            asia_casos = filter(TaulaAux, continent == "Asia")
+            northamerica_casos = filter(TaulaAux, continent == "North America")
+            southamerica_casos = filter(TaulaAux, continent == "South America")
+            europa_casos = filter(TaulaAux, continent == "Europe")
+            oceania_casos = filter(TaulaAux, continent == "Oceania")
+
+Ara tenim 6 taules corresponents a cada continent, per fer-ho més visual, tenim aquestes dades a la taula _africa_casos_ :
+ 
+            
+            
+
+
+   
    - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. 
 Nosaltres posem com exemple la relació de casos de covid per a cada continent. Els casos és una variable numèrica i els noms dels continents són la variable categòrica, d'aquesta manera podem visualitzar, aproximadament, quin és el nombre de casos respecte la resta de continents.
 
