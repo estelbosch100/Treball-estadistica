@@ -105,7 +105,7 @@ Filtratge per continent:
 Ara tenim 6 taules corresponents a cada continent, per fer-ho més visual, tenim aquestes dades a la taula _africa_casos_ :
  
             
-            
+ ![](https://github.com/estelbosch100/Treball-estadistica/blob/main/AfricaCasos.png)
 
 
    
