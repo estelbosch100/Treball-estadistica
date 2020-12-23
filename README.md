@@ -45,6 +45,7 @@ A més a més, hi haurà totes aquelles columnes que es diessin **CN_Flag** o **
 Per últim, creem una última taula referent a la primera pregunta del treball i que es diu _data_.
 Aquesta l'hem obtingut a partir de l'intersecció entre les taules _X_ i _Y_ que hem creat als apartats anteriors. Òbviament, al ser una intersecció, han de tenir un camp en comú i el que hem fet servir ha sigut l'"iso_code" també vist en apartats previs.
 
+
 #### Estem interessats a analitzar quina relació hi ha entre les decisions de govern (polítiques de tancament i contenció i econòmiques) i com es relacionen aquestes amb la variació de casos a la població (y). Tenint en compte això, contesta les preguntes següents del treball:
 
 * **Pregunta 2: Prepara el conjunt de dades _data_ per a ser analitzat segons les característiques de les variables. Explica les decisions que prens i quina és la tipologia de les variables que té el teu conjunt de dades.**
