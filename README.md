@@ -57,8 +57,15 @@ En segon lloc, hem mirat les relacions que cal fer entre algunes variables de la
       
       auxiliar = select(temp, iso_code = CountryCode, ConfirmedCases, ConfirmedDeaths)
       data = inner_join(data, auxiliar, by='iso_code')
- Seguidament, també hem volgut inserir alguna columna més de la taula dowid a data:
+      
+ Seguidament, també hem volgut inserir alguna columna més de la taula dowid a data i hem eliminat els valors duplicats fent ús de la funció distinct() de la llibreria _dplyr_ : 
  
+ 
+      auxiliar = select(dowid, iso_code, continent, median_age, aged_65_older, aged_70_older)
+      data = inner_join(data, auxiliar, by = 'iso_code')
+
+      data = distinct(data)
+
 
 
 
@@ -79,7 +86,15 @@ Les dues variables principals són les següents:
     
 I com a relacions d'aquestes dues variables que acabem de veure, tenim:
    - **Relació numèrica-numèrica:** Parlem d'una relació numèrica quan dues variables són quantitatives i es poden fer una sèrie d'operacions que ens donaran una xifra que les relacionarà. Un exemple ben clar d'aquesta relació fent servir la taula que ens brinden seria.
-   - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. 
+   - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. Nosaltres posem com exemple la relació de casos de covid per a cada continent. Els casos és una variable numèrica i els noms dels continents són la variable categòrica, d'aquesta manera podem visualitzar aproximadament, quin és el nombre de casos respecte la resta de continents.
+   
+            library(ggplot2)
+    ggplot(data, aes(x=ConfirmedCases, y=continent)) + geom_bar(stat="identity") +      scale_fill_brewer(palette="Oranges")
+  
+  
+  ![]()
+     
+  
    - **Relació categòrica-categòrica:** En aquest cas, se sol relacionar dues variables que, per exemple, donem per cas que parlem de persones que estan al món laboral. Aleshores, la primera variable descriu el sexe de la persona (masculí i femení) i la segona ens dona la opció de triar entre si el salari mensual és menor que 300, és menor que 1000 però major que 300 i si el salari mensual és major que 1000. Clar que això no seria un exemple aplicat a la pràctica. Per exemplificar aquesta relació tenint en compte la taula que se'ns dona, podríem afirmar que (ACABAR D'EMPLENAR I EXEMPLIFICAR AMB UN GRÀFIC)
 
 </ul>
