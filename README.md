@@ -57,11 +57,13 @@ Per fer l'exercici 2 cal observar amb atenció la resta d'exercicis ja que se'ns
 
 Per fer aquest exercici, necessitarem algunes llibreries com ggplot2 o dplyr per exemplificar les relacions de manera il·lustrativa.
 
-    * Variable numèrica:
-    * Variable categòrica:
-    * Relació numèrica-numèrica:
-    * Relació numèrica-categòrica:
-    * Relació categòrica-categòrica:
+ * Variable numèrica: Per una banda, tenim que una variable numèrica és tota variable quantitativa, és a dir, que a partir d'aquesta podem calcular infinits valors reals segons el que se'ns demana. Uns exemples ben clars a la pràctica que estem fent són les columnes: y, StringencyIndex, StringencyLegacyIndex, GovernmentResponseIndex, ContainmentHealthIndex, etc. (-0.05184844, 78.70, 76.19, 61.90, 72.22, 0.0, etc.).
+ 
+ * Variable categòrica: Per altra banda, tenim que les variables categòriques són aquelles variables que no són quantitatives sinó qualitatives, és a dir, són aquelles que responen les preguntes amb respostes no-numèriques. Alguns dels exemples més clars a la pràctica serien el cas de les columnes: iso_code o country, ja que fan referència a les sigles del país d'on s'han enregistrat les dades o el nom d'aquest mateix. Ara bé, una variable categòrica també podria ser aquella que ens diu si una persona és de sexe masculí o femení, que ens diu si està casat o no (sí o no), aquelles que ens diuen quin curs o quins estudis està cursant la persona (primaria, secundaria, batxillerat, universitat, laboral...).
+Com a relacions d'aquestes dues variables tenim les següents:
+ * Relació numèrica-numèrica:
+ * Relació numèrica-categòrica:
+ * Relació categòrica-categòrica:
 
 
 
