@@ -107,8 +107,52 @@ Ara tenim 6 taules corresponents a cada continent, per fer-ho més visual, tenim
             
  ![](https://github.com/estelbosch100/Treball-estadistica/blob/main/AfricaCasos.png)
 
+Ara voldríem fer el sumatori per a cada columna _ConfirmedCases_ i _ConfirmedDeaths_ :
 
-   
+_ConfirmedCases_ :
+
+            CasosAfrica = sum(africa_casos$ConfirmedCases)
+            CasosAsia = sum(asia_casos$ConfirmedCases)
+            CasosNordAmerica = sum(northamerica_casos$ConfirmedCases)
+            CasosSudAmerica = sum(southamerica_casos$ConfirmedCases)
+            CasosEuropa = sum(europa_casos$ConfirmedCases)
+            CasosOceania = sum(oceania_casos$ConfirmedCases)
+I els valors que ara tenim en els casos de covid per a cada continent són: 
+           
+            CasosAfrica = 228638
+            CasosAsia = 1556201
+            CasosNordAmerica = 2385773
+            CasosSudAmerica = 1421503
+            CasosEuropa = 2147099
+            CasosOceania = 7320
+
+_ConfirmedDeaths_:
+
+            DeathsAfrica = sum(africa_casos$ConfirmedDeaths)
+            DeathsAsia = sum(asia_casos$ConfirmedDeaths)
+            DeathsNordAmerica = sum(northamerica_casos$ConfirmedDeaths)
+            DeathsSudAmerica = sum(southamerica_casos$ConfirmedDeaths)
+            DeathsEuropa = sum(europa_casos$ConfirmedDeaths)
+            DeathsOceania = sum(oceania_casos$ConfirmedDeaths)
+       
+I els valors que ara tenim en els casos de mort per covid de cada continent són: 
+            
+            DeathsAfrica = 6183
+            DeathsAsia = 39176
+            DeathsNordAmerica = 145366
+            DeathsSudAmerica = 59068
+            DeathsEuropa = 180113
+            DeathsOceania = 102
+            
+Ara a la _TaulaAux_ que havíem fet abans, hi hem afegit el percentatge de morts per covid sobre el total de casos afectats:
+            
+            TaulaAux$PercentatgeMortsAsia <- c((DeathsAsia*100)/CasosAsia)
+            TaulaAux$PercentatgeMortsAfrica <- c((DeathsAfrica*100)/CasosAfrica)
+            TaulaAux$PercentatgeMortsAmericaNord <- c((DeathsNordAmerica*100)/CasosNordAmerica)
+            TaulaAux$PercentatgeMortsAmericaSud <- c((DeathsSudAmerica*100)/CasosSudAmerica)
+            TaulaAux$PercentatgeMortsEuropa <- c((DeathsEuropa*100)/CasosEuropa)
+            TaulaAux$PercentatgeMortsOceania <- c((DeathsOceania*100)/CasosOceania)
+
    - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. 
 Nosaltres posem com exemple la relació de casos de covid per a cada continent. Els casos és una variable numèrica i els noms dels continents són la variable categòrica, d'aquesta manera podem visualitzar, aproximadament, quin és el nombre de casos respecte la resta de continents.
 
