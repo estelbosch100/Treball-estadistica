@@ -51,22 +51,38 @@ Aquesta l'hem obtingut a partir de l'intersecció entre les taules _X_ i _Y_ que
 
 Per fer l'exercici 2 cal observar amb atenció la resta d'exercicis ja que se'ns demana modificar la taula data i això només es pot fer a partir dels exercicis a continuació. 
 
+Primer de tot, hem mirat si totes les files de la taula tenen dades, n'hi ha una que no. Aquesta que correspon a Comoros amb iso_code = COM la desestimem perquè si no s'han pogut obtenir dades, no ens pot servir per a calcular cap altre valor.
+
+En segon lloc, hem mirat les relacions que cal fer entre algunes variables de la taula. Com que hem de fer una relació numèrica-numèrica, una numèrica-categòrica i una categòrica-categòrica, creiem convenient que haurem de crear noves columnes que ens permetin obtenir aquestes relacions. Ens ha semblat interessant ajuntar les variables _ConfirmedCases_ i _ConfirmedDeaths_ de la taula temp amb data ja que són dades que ens poden ajudar a calcular un exemple de relació numèrica-numèrica. 
+      
+      auxiliar = select(temp, iso_code = CountryCode, ConfirmedCases, ConfirmedDeaths)
+      data = inner_join(data, auxiliar, by='iso_code')
+ Seguidament, també hem volgut inserir alguna columna més de la taula dowid a data:
+ 
+
+
+
 ## PREGUNTA 3 I 4: Anàlisi del conjunt de dades
 
 * **Pregunta 3: Escull les variables que consideris dins el teu conjunt de dades per tal de descriure de manera completa una variable numèrica, una variable categòrica i les relacions numèrica-numèrica, numèrica-categòrica i categòrica-categòrica.**
 
 Per fer aquest exercici, necessitarem algunes llibreries com ggplot2 o dplyr per exemplificar les relacions de manera il·lustrativa.
 
-      * Variable numèrica: Per una banda, tenim que una variable numèrica és tota variable quantitativa, és a dir, que a partir d'aquesta podem calcular infinits valors reals segons el que se'ns demana. Uns exemples ben clars a la pràctica que estem fent són les columnes: y, StringencyIndex, StringencyLegacyIndex, GovernmentResponseIndex, ContainmentHealthIndex, etc. (-0.05184844, 78.70, 76.19, 61.90, 72.22, 0.0, etc.).
- 
-      * **Variable categòrica:** Per altra banda, tenim que les variables categòriques són aquelles variables que no són quantitatives sinó qualitatives, és a dir, són aquelles que responen les preguntes amb respostes no-numèriques. Alguns dels exemples més clars a la pràctica serien el cas de les columnes: iso_code o country, ja que fan referència a les sigles del país d'on s'han enregistrat les dades o el nom d'aquest mateix. Ara bé, una variable categòrica també podria ser aquella que ens diu si una persona és de sexe masculí o femení, que ens diu si està casat o no (sí o no), aquelles que ens diuen quin curs o quins estudis està cursant la persona (primaria, secundaria, batxillerat, universitat, laboral...).
-    
-    
-Com a relacions d'aquestes dues variables tenim les següents:
-      * **Relació numèrica-numèrica:**
-      * **Relació numèrica-categòrica:**
-      * **Relació categòrica-categòrica:**
+<ul>
 
+Les dues variables principals són les següents:
+
+  - **Variable numèrica:** Per una banda, tenim que una variable numèrica és tota variable quantitativa, és a dir, que a partir d'aquesta podem calcular infinits valors reals segons el que se'ns demana. Uns exemples ben clars a la pràctica que estem fent són les columnes: y, StringencyIndex, StringencyLegacyIndex, GovernmentResponseIndex, ContainmentHealthIndex, etc. (-0.05184844, 78.70, 76.19, 61.90, 72.22, 0.0, etc.).
+ 
+  - **Variable categòrica:** Per altra banda, tenim que les variables categòriques són aquelles variables que no són quantitatives sinó qualitatives, és a dir, són aquelles que responen les preguntes amb respostes no-numèriques. Alguns dels exemples més clars a la pràctica serien el cas de les columnes: iso_code o country, ja que fan referència a les sigles del país d'on s'han enregistrat les dades o el nom d'aquest mateix. Ara bé, una variable categòrica també podria ser aquella que ens diu si una persona és de sexe masculí o femení, que ens diu si està casat o no (sí o no), aquelles que ens diuen quin curs o quins estudis està cursant la persona (primaria, secundaria, batxillerat, universitat, laboral...).
+    
+    
+I com a relacions d'aquestes dues variables que acabem de veure, tenim:
+   - **Relació numèrica-numèrica:** Parlem d'una relació numèrica quan dues variables són quantitatives i es poden fer una sèrie d'operacions que ens donaran una xifra que les relacionarà. Un exemple ben clar d'aquesta relació fent servir la taula que ens brinden seria.
+   - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. 
+   - **Relació categòrica-categòrica:** En aquest cas, se sol relacionar dues variables que, per exemple, donem per cas que parlem de persones que estan al món laboral. Aleshores, la primera variable descriu el sexe de la persona (masculí i femení) i la segona ens dona la opció de triar entre si el salari mensual és menor que 300, és menor que 1000 però major que 300 i si el salari mensual és major que 1000. Clar que això no seria un exemple aplicat a la pràctica. Per exemplificar aquesta relació tenint en compte la taula que se'ns dona, podríem afirmar que (ACABAR D'EMPLENAR I EXEMPLIFICAR AMB UN GRÀFIC)
+
+</ul>
 
 
 * **Pregunta 4: Utilitza els contrastos vistos a classes per treure conclusions o assumpcions que es poden fer amb les tres relacions de l’apartat anterior (numèrica-numèrica, numèrica-categòrica i categòrica-categòrica). Per cada un dels contrastos, específica les hipòtesis inicial i alternativa, quin és l’estadístic de contrast, el valor p i la decisió final envers les hipòtesis plantejades.**
