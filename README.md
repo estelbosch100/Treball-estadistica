@@ -87,14 +87,20 @@ Les dues variables principals són les següents:
     
 I com a relacions d'aquestes dues variables que acabem de veure, tenim:
    - **Relació numèrica-numèrica:** Parlem d'una relació numèrica quan dues variables són quantitatives i es poden fer una sèrie d'operacions que ens donaran una xifra que les relacionarà. Un exemple ben clar d'aquesta relació fent servir la taula que ens brinden seria.
-   - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. Nosaltres posem com exemple la relació de casos de covid per a cada continent. Els casos és una variable numèrica i els noms dels continents són la variable categòrica, d'aquesta manera podem visualitzar aproximadament, quin és el nombre de casos respecte la resta de continents.
+   - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. 
+Nosaltres posem com exemple la relació de casos de covid per a cada continent. Els casos és una variable numèrica i els noms dels continents són la variable categòrica, d'aquesta manera podem visualitzar, aproximadament, quin és el nombre de casos respecte la resta de continents.
+
+Aquest seria el codi que hem utilitzat per a construir el gràfic:
    
             library(ggplot2)
     ggplot(data, aes(x=ConfirmedCases, y=continent)) + geom_bar(stat="identity") +      scale_fill_brewer(palette="Oranges")
   
   
+I aquesta és la imatge del gràfic:
+
   ![](https://github.com/estelbosch100/Treball-estadistica/blob/main/continent-confirmedcases.png)
      
+Per exemple, podem estimar que a Oceania hi ha pocs casos en relació a la resta. A Oceania hi ha 7320 casos de covid, en canvi, a Àsia ja boregen els 1556201.
   
    - **Relació categòrica-categòrica:** En aquest cas, se sol relacionar dues variables que, per exemple, donem per cas que parlem de persones que estan al món laboral. Aleshores, la primera variable descriu el sexe de la persona (masculí i femení) i la segona ens dona la opció de triar entre si el salari mensual és menor que 300, és menor que 1000 però major que 300 i si el salari mensual és major que 1000. Clar que això no seria un exemple aplicat a la pràctica. Per exemplificar aquesta relació tenint en compte la taula que se'ns dona, podríem afirmar que (ACABAR D'EMPLENAR I EXEMPLIFICAR AMB UN GRÀFIC)
 
