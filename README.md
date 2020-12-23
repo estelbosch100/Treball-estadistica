@@ -55,6 +55,10 @@ Per fer l'exercici 2 cal observar amb atenció la resta d'exercicis ja que se'ns
 
 * **Pregunta 3: Escull les variables que consideris dins el teu conjunt de dades per tal de descriure de manera completa una variable numèrica, una variable categòrica i les relacions numèrica-numèrica, numèrica-categòrica i categòrica-categòrica.**
 
+Per fer aquest exercici, necessitarem algunes llibreries com ggplot2 o dplyr.
+
+
+
 * **Pregunta 4: Utilitza els contrastos vistos a classes per treure conclusions o assumpcions que es poden fer amb les tres relacions de l’apartat anterior (numèrica-numèrica, numèrica-categòrica i categòrica-categòrica). Per cada un dels contrastos, específica les hipòtesis inicial i alternativa, quin és l’estadístic de contrast, el valor p i la decisió final envers les hipòtesis plantejades.**
 
 
