@@ -55,7 +55,13 @@ Per fer l'exercici 2 cal observar amb atenció la resta d'exercicis ja que se'ns
 
 * **Pregunta 3: Escull les variables que consideris dins el teu conjunt de dades per tal de descriure de manera completa una variable numèrica, una variable categòrica i les relacions numèrica-numèrica, numèrica-categòrica i categòrica-categòrica.**
 
-Per fer aquest exercici, necessitarem algunes llibreries com ggplot2 o dplyr.
+Per fer aquest exercici, necessitarem algunes llibreries com ggplot2 o dplyr per exemplificar les relacions de manera il·lustrativa.
+
+    * Variable numèrica:
+    * Variable categòrica:
+    * Relació numèrica-numèrica:
+    * Relació numèrica-categòrica:
+    * Relació categòrica-categòrica:
 
 
 
