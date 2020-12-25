@@ -45,7 +45,6 @@ A més a més, hi haurà totes aquelles columnes que es diessin **CN_Flag** o **
 Per últim, creem una última taula referent a la primera pregunta del treball i que es diu _data_.
 Aquesta l'hem obtingut a partir de l'intersecció entre les taules _X_ i _Y_ que hem creat als apartats anteriors. Òbviament, al ser una intersecció, han de tenir un camp en comú i el que hem fet servir ha sigut l'"iso_code" també vist en apartats previs.
 
-
 #### Estem interessats a analitzar quina relació hi ha entre les decisions de govern (polítiques de tancament i contenció i econòmiques) i com es relacionen aquestes amb la variació de casos a la població (y). Tenint en compte això, contesta les preguntes següents del treball:
 
 * **Pregunta 2: Prepara el conjunt de dades _data_ per a ser analitzat segons les característiques de les variables. Explica les decisions que prens i quina és la tipologia de les variables que té el teu conjunt de dades.**
@@ -68,6 +67,63 @@ En segon lloc, hem mirat les relacions que cal fer entre algunes variables de la
       data = distinct(data)
 
 
+Creiem convenient crear una _taula auxiliar_ on hi posarem aquelles columnes que ens interessen de la taula _data_ per a veure més clar sobre quines dades treballem i quines totalitats tenim entre les mans. A continuació, filtrarem aquesta taula per continents (Àsia, Àfrica, Amèrica del Nord, Amèrica del Sud, Europa i Oceania):
+            
+            TaulaAux = select(data, continent, ConfirmedCases, ConfirmedDeaths)
+
+Filtratge per continent:
+            
+            africa_casos = filter(TaulaAux, continent == "Africa")
+            asia_casos = filter(TaulaAux, continent == "Asia")
+            northamerica_casos = filter(TaulaAux, continent == "North America")
+            southamerica_casos = filter(TaulaAux, continent == "South America")
+            europa_casos = filter(TaulaAux, continent == "Europe")
+            oceania_casos = filter(TaulaAux, continent == "Oceania")
+
+ Ara tenim 6 taules corresponents a cada continent, per fer-ho més visual, tenim aquestes dades a la taula _africa_casos_ :
+ 
+            
+![](C:\Users\estel\Documents\GeinfUdg\2n CURS\ESTADÍSTICA\PRÀCTIQUES\Treball estadistica\AfricaCasos.png)
+
+
+Ara voldríem fer el sumatori per a cada columna _ConfirmedCases_ i _ConfirmedDeaths_ per tenir sobre quin total tenim les dades:
+
+_ConfirmedCases_ :
+
+            CasosAfrica = sum(africa_casos$ConfirmedCases)
+            CasosAsia = sum(asia_casos$ConfirmedCases)
+            CasosNordAmerica = sum(northamerica_casos$ConfirmedCases)
+            CasosSudAmerica = sum(southamerica_casos$ConfirmedCases)
+            CasosEuropa = sum(europa_casos$ConfirmedCases)
+            CasosOceania = sum(oceania_casos$ConfirmedCases)
+      
+I els valors que ara tenim en els casos de covid per a cada continent són: 
+            
+            CasosAfrica = 228638
+            CasosAsia = 1556201
+            CasosNordAmerica = 2385773
+            CasosSudAmerica = 1421503
+            CasosEuropa = 2147099
+            CasosOceania = 7320
+      
+_ConfirmedDeaths_ :
+
+            DeathsAfrica = sum(africa_casos$ConfirmedDeaths)
+            DeathsAsia = sum(asia_casos$ConfirmedDeaths)
+            DeathsNordAmerica = sum(northamerica_casos$ConfirmedDeaths)
+            DeathsSudAmerica = sum(southamerica_casos$ConfirmedDeaths)
+            DeathsEuropa = sum(europa_casos$ConfirmedDeaths)
+            DeathsOceania = sum(oceania_casos$ConfirmedDeaths)
+
+I els valors que ara tenim en els casos de mort per covid de cada continent són: 
+            
+            DeathsAfrica = 6183
+            DeathsAsia = 39176
+            DeathsNordAmerica = 145366
+            DeathsSudAmerica = 59068
+            DeathsEuropa = 180113
+            DeathsOceania = 102
+            
 
 
 ## PREGUNTA 3 I 4: Anàlisi del conjunt de dades
@@ -90,70 +146,16 @@ I com a relacions d'aquestes dues variables que acabem de veure, tenim:
    - **Relació numèrica-numèrica:** Parlem d'una relació numèrica quan dues variables són quantitatives i es poden fer una sèrie d'operacions que ens donaran una xifra que les relacionarà. 
 Començarem seleccionant de data les columnes que ens interessen per a calcular el percentatge de mortalitat segons el registre de casos covid a cada continent. Per diferenciar-ho de la relació numèrica-categòrica que veurem a continuació, el què farem serà tractar cada continent per separat, obtenint uns valors independents.
 
-Primer creem una _taula auxiliar_ on hi posarem aquelles columnes que ens interessen de la taula _data_ per a exemplificar la relació numèrica-numèrica. A continuació, filtrarem aquesta taula per continents (Àsia, Àfrica, Amèrica del Nord, Amèrica del Sud, Europa i Oceania):
-            
-            TaulaAux = select(data, continent, ConfirmedCases, ConfirmedDeaths)
 
-Filtratge per continent:
-            
-            africa_casos = filter(TaulaAux, continent == "Africa")
-            asia_casos = filter(TaulaAux, continent == "Asia")
-            northamerica_casos = filter(TaulaAux, continent == "North America")
-            southamerica_casos = filter(TaulaAux, continent == "South America")
-            europa_casos = filter(TaulaAux, continent == "Europe")
-            oceania_casos = filter(TaulaAux, continent == "Oceania")
+Així doncs, per mostrar visualment com és un exemple de relació numèrica-nuèrica, seria fer servir la freqüència de dades recopilades sobre el nivell de rigorositat près a cadascuna d'aquestes. Per fer-ho, utilitzarem un histograma:
 
-Ara tenim 6 taules corresponents a cada continent, per fer-ho més visual, tenim aquestes dades a la taula _africa_casos_ :
- 
-            
- ![](https://github.com/estelbosch100/Treball-estadistica/blob/main/AfricaCasos.png)
+    
+    hist(x = data$StringencyIndex, main = "Histograma de la rigorositat presa pels governs", 
+         xlab = "Nivell de rigorositat", ylab = "Frequencia",
+         col = "purple")
 
-Ara voldríem fer el sumatori per a cada columna _ConfirmedCases_ i _ConfirmedDeaths_ :
-
-_ConfirmedCases_ :
-
-            CasosAfrica = sum(africa_casos$ConfirmedCases)
-            CasosAsia = sum(asia_casos$ConfirmedCases)
-            CasosNordAmerica = sum(northamerica_casos$ConfirmedCases)
-            CasosSudAmerica = sum(southamerica_casos$ConfirmedCases)
-            CasosEuropa = sum(europa_casos$ConfirmedCases)
-            CasosOceania = sum(oceania_casos$ConfirmedCases)
-I els valors que ara tenim en els casos de covid per a cada continent són: 
-           
-            CasosAfrica = 228638
-            CasosAsia = 1556201
-            CasosNordAmerica = 2385773
-            CasosSudAmerica = 1421503
-            CasosEuropa = 2147099
-            CasosOceania = 7320
-
-_ConfirmedDeaths_:
-
-            DeathsAfrica = sum(africa_casos$ConfirmedDeaths)
-            DeathsAsia = sum(asia_casos$ConfirmedDeaths)
-            DeathsNordAmerica = sum(northamerica_casos$ConfirmedDeaths)
-            DeathsSudAmerica = sum(southamerica_casos$ConfirmedDeaths)
-            DeathsEuropa = sum(europa_casos$ConfirmedDeaths)
-            DeathsOceania = sum(oceania_casos$ConfirmedDeaths)
-       
-I els valors que ara tenim en els casos de mort per covid de cada continent són: 
-            
-            DeathsAfrica = 6183
-            DeathsAsia = 39176
-            DeathsNordAmerica = 145366
-            DeathsSudAmerica = 59068
-            DeathsEuropa = 180113
-            DeathsOceania = 102
-            
-Ara a la _TaulaAux_ que havíem fet abans, hi hem afegit el percentatge de morts per covid sobre el total de casos afectats:
-            
-            TaulaAux$PercentatgeMortsAsia <- c((DeathsAsia*100)/CasosAsia)
-            TaulaAux$PercentatgeMortsAfrica <- c((DeathsAfrica*100)/CasosAfrica)
-            TaulaAux$PercentatgeMortsAmericaNord <- c((DeathsNordAmerica*100)/CasosNordAmerica)
-            TaulaAux$PercentatgeMortsAmericaSud <- c((DeathsSudAmerica*100)/CasosSudAmerica)
-            TaulaAux$PercentatgeMortsEuropa <- c((DeathsEuropa*100)/CasosEuropa)
-            TaulaAux$PercentatgeMortsOceania <- c((DeathsOceania*100)/CasosOceania)
-
+  ![](http://127.0.0.1:28001/graphics/d8032a61-02f1-4d2b-97f2-f49480c47bd0.png)
+   
    - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. 
 Nosaltres posem com exemple la relació de casos de covid per a cada continent. Els casos és una variable numèrica i els noms dels continents són la variable categòrica, d'aquesta manera podem visualitzar, aproximadament, quin és el nombre de casos respecte la resta de continents.
 
@@ -164,12 +166,28 @@ Aquest seria el codi que hem utilitzat per a construir el gràfic:
   
   
 I aquesta és la imatge del gràfic:
+![Casos confirmats de covid](http://127.0.0.1:28001/graphics/a0e8ddfa-ede4-45dc-86a1-64e06f7d4973.png)
 
-  ![](https://github.com/estelbosch100/Treball-estadistica/blob/main/continent-confirmedcases.png)
-     
+
 Per exemple, podem estimar que a Oceania hi ha pocs casos en relació a la resta. A Oceania hi ha 7320 casos de covid, en canvi, a Àsia ja boregen els 1556201. Una dada molt distintiva és que a Nord Amèrica ja pràcticament arriben als 2500000 casos de covid.
   
-   - **Relació categòrica-categòrica:** En aquest cas, se sol relacionar dues variables que, per exemple, donem per cas que parlem de persones que estan al món laboral. Aleshores, la primera variable descriu el sexe de la persona (masculí i femení) i la segona ens dona la opció de triar entre si el salari mensual és menor que 300, és menor que 1000 però major que 300 i si el salari mensual és major que 1000. Clar que això no seria un exemple aplicat a la pràctica. Per exemplificar aquesta relació tenint en compte la taula que se'ns dona, podríem afirmar que (ACABAR D'EMPLENAR I EXEMPLIFICAR AMB UN GRÀFIC)
+   - **Relació categòrica-categòrica:** En aquest cas, se sol relacionar dues variables que, per exemple, donem per cas que parlem de persones que estan al món laboral. Aleshores, la primera variable descriu el sexe de la persona (masculí i femení) i la segona ens dona la opció de triar entre si el salari mensual és menor que 300, és menor que 1000 però major que 300 i si el salari mensual és major que 1000. Clar que això no seria un exemple aplicat a la pràctica. Caldria fer una taula de contingències sobre l'ajut econòmic que reben els diferents continents.
+   
+El què fem és crear una taula _Economia_ auxiliar per tal de poder agafar les dades de la taula Data que siguin de l'edat mitjana i continent:
+
+            
+      Economia = select(data, continent, EconomicSupportIndex)
+      Economia <- Economia[!is.na(Economia$EconomicSupportIndex),]
+
+            
+Seguidament, el què fem és construir una taula de contingència amb aquestes dades:
+      
+      table(Economia$continent, Economia$EconomicSupportIndex)
+      
+El resultat serà una taula bastant gran on s'hi veurà a l'esquerra el nom del continent i a sobre podrem veure diferents ajuts econòmics donats als continents.
+
+![]() hi va una imatge
+
 
 </ul>
 
@@ -180,5 +198,8 @@ Per exemple, podem estimar que a Oceania hi ha pocs casos en relació a la resta
 ## PREGUNTA 5 I 6: Model predictiu lineal
 
 * **Pregunta 5: Crea un model de regressió lineal que expliqui la variable _y_ a partir de les variables d’acció de govern o altres variables derivades d’aquestes. Tria el model de manera que sigui òptim segons algun criteri vist a classe. Per aquest model, descriu l’efecte que tenen les variables explicatives amb la variable resposta i mira si es compleixen les assumpcions bàsiques.**
+
+En primer lloc, com bé hem vist a les pràctiques d'estadística, el model lineal és el model que explica l’aleatorietat d’un variable numèrica y (coneguda també com a variable resposta) com a combinació lineal d’altres variables numèriques.
+
 
 * **Pregunta 6: Utilitza aquest model per fer una predicció mitjana amb interval de confiança de la variable y al dia 15 de novembre, disposant únicament de les variables del conjunt _doxcgrt_.**
