@@ -216,5 +216,17 @@ Les següents variables amb qui _y_ formaria regressions lineals simples són _G
       abline(v = 0, col="red")
       plot(x = data$y, y = data$EconomicSupportIndex)
       abline(v = 0, col="red")
+      
+ Els gràfics de dispersió corresponents a aquestes línies de codi serien
+ 
+ ![]()
+ 
+ i 
+ 
+ ![]()
+ 
+ 
 
 * **Pregunta 6: Utilitza aquest model per fer una predicció mitjana amb interval de confiança de la variable y al dia 15 de novembre, disposant únicament de les variables del conjunt _doxcgrt_.**
+
+
