@@ -199,7 +199,22 @@ El resultat serà una taula bastant gran on s'hi veurà a l'esquerra el nom del 
 
 * **Pregunta 5: Crea un model de regressió lineal que expliqui la variable _y_ a partir de les variables d’acció de govern o altres variables derivades d’aquestes. Tria el model de manera que sigui òptim segons algun criteri vist a classe. Per aquest model, descriu l’efecte que tenen les variables explicatives amb la variable resposta i mira si es compleixen les assumpcions bàsiques.**
 
-En primer lloc, com bé hem vist a les pràctiques d'estadística, el model lineal és el model que explica l’aleatorietat d’un variable numèrica y (coneguda també com a variable resposta) com a combinació lineal d’altres variables numèriques.
+En primer lloc, com bé hem vist a les pràctiques d'estadística, el model lineal és el model que explica l’aleatorietat d’un variable numèrica _y_ (coneguda també com a variable resposta) com a combinació lineal d’altres variables numèriques.
 
+La variable _StrignencyIndex_ en relació amb la _y_ presenta una regressió lineal simple. Ho hem comprovat a partir d'utilitzar el següent codi:
+
+      library(ggplot2)
+      plot(x = data$y, y = data$StringencyIndex)
+      abline(v = 0, col="red")
+
+
+![Gràfic strtingencyIndex i data, model lineal]()
+
+Les següents variables amb qui _y_ formaria regressions lineals simples són _GovernmentResponseIndex_ i _ContainmentHealthIndex_. Fem el mateix procediment que a l'apartat anterior per a veure la regressió lineal:
+
+      plot(x = data$y, y = data$ContainmentHealthIndex)
+      abline(v = 0, col="red")
+      plot(x = data$y, y = data$EconomicSupportIndex)
+      abline(v = 0, col="red")
 
 * **Pregunta 6: Utilitza aquest model per fer una predicció mitjana amb interval de confiança de la variable y al dia 15 de novembre, disposant únicament de les variables del conjunt _doxcgrt_.**
