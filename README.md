@@ -151,7 +151,7 @@ Així doncs, per mostrar visualment com és un exemple de relació numèrica-nu�
          xlab = "Nivell de rigorositat", ylab = "Frequencia",
          col = "purple")
          
-<a href="https://discordapp.com/channels/793070790462406657/793070790462406659/793071444128038933"</a>
+ ![Histograma rigorositat presa pels governs](https://cdn.discordapp.com/attachments/793070790462406659/793071444179419136/rigorositat.png)
 
 
    
@@ -164,8 +164,7 @@ Aquest seria el codi que hem utilitzat per a construir el gràfic:
     ggplot(data, aes(x=ConfirmedCases, y=continent)) + geom_bar(stat="identity") +      scale_fill_brewer(palette="Oranges")
   
 
-<a href="https://discord.com/channels/793070790462406657/793070790462406659/793071211550212116"</a>
-
+![Casos confirmats de COVID per continent](https://cdn.discordapp.com/attachments/793070790462406659/793071211415732224/continent-confirmedcases.png)
 
 Per exemple, podem estimar que a Oceania hi ha pocs casos en relació a la resta. A Oceania hi ha 7320 casos de covid, en canvi, a Àsia ja boregen els 1556201. Una dada molt distintiva és que a Nord Amèrica ja pràcticament arriben als 2500000 casos de covid.
   
@@ -184,9 +183,7 @@ Seguidament, el què fem és construir una taula de contingència amb aquestes d
       
 El resultat serà una taula bastant gran on s'hi veurà a l'esquerra el nom del continent i a sobre podrem veure diferents ajuts econòmics donats als continents.
 
-<a href = "https://discordapp.com/channels/793070790462406657/793070790462406659/793075671144333314"</a>
-
-
+![Taula contingència - ajuts econòmics per continent](https://cdn.discordapp.com/attachments/793070790462406659/793075671408181258/unknown.png)
 </ul>
 
 
@@ -300,14 +297,20 @@ La variable _StrignencyIndex_ en relació amb la _y_ presenta una regressió lin
       plot(x = data$y, y = data$StringencyIndex)
       abline(v = 0, col="red")
 
+![StrignencyIndex](https://cdn.discordapp.com/attachments/793070790462406659/793071359349358643/strignencyindex_plot.png)
 
 Les següents variables amb qui _y_ formaria regressions lineals simples són _GovernmentResponseIndex_ i _ContainmentHealthIndex_. Fem el mateix procediment que a l'apartat anterior per a veure la regressió lineal:
 
       plot(x = data$y, y = data$ContainmentHealthIndex)
       abline(v = 0, col="red")
+      
+ ![ContainmentHealthIndex](https://cdn.discordapp.com/attachments/793070790462406659/793071043933503488/containmenthealth_data.png)
+ 
+
       plot(x = data$y, y = data$EconomicSupportIndex)
       abline(v = 0, col="red")
       
+![EconomicSupportIndex](https://cdn.discordapp.com/attachments/793070790462406659/793071142343802910/governmentresponseindex.png)
 
 * **Pregunta 6: Utilitza aquest model per fer una predicció mitjana amb interval de confiança de la variable y al dia 15 de novembre, disposant únicament de les variables del conjunt _doxcgrt_.**
 
