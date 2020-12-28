@@ -150,6 +150,9 @@ Així doncs, per mostrar visualment com és un exemple de relació numèrica-nu�
     hist(x = data$StringencyIndex, main = "Histograma de la rigorositat presa pels governs", 
          xlab = "Nivell de rigorositat", ylab = "Frequencia",
          col = "purple")
+         
+<a href="https://discordapp.com/channels/793070790462406657/793070790462406659/793071444128038933"</a>
+
 
    
    - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. 
@@ -160,6 +163,9 @@ Aquest seria el codi que hem utilitzat per a construir el gràfic:
             library(ggplot2)
     ggplot(data, aes(x=ConfirmedCases, y=continent)) + geom_bar(stat="identity") +      scale_fill_brewer(palette="Oranges")
   
+
+<a href="https://discord.com/channels/793070790462406657/793070790462406659/793071211550212116"</a>
+
 
 Per exemple, podem estimar que a Oceania hi ha pocs casos en relació a la resta. A Oceania hi ha 7320 casos de covid, en canvi, a Àsia ja boregen els 1556201. Una dada molt distintiva és que a Nord Amèrica ja pràcticament arriben als 2500000 casos de covid.
   
@@ -177,6 +183,9 @@ Seguidament, el què fem és construir una taula de contingència amb aquestes d
       table(Economia$continent, Economia$EconomicSupportIndex)
       
 El resultat serà una taula bastant gran on s'hi veurà a l'esquerra el nom del continent i a sobre podrem veure diferents ajuts econòmics donats als continents.
+
+<a href = "https://discordapp.com/channels/793070790462406657/793070790462406659/793075671144333314"</a>
+
 
 </ul>
 
@@ -316,6 +325,7 @@ Farem servir la funció lm() per crear un model de regressió amb les variables 
 Utilitzarem la comanda predict() per calcular l’interval de confiança:
 
       predict(mod1,dpred,interval='confidence')
+      fit       lwr      upr
+    1 1.086201 0.8812474 1.291155
 
 Hem pogut observar que la variable Y seria 0.8812474.
-
