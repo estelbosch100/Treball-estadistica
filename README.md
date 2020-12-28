@@ -32,11 +32,13 @@ Crea un nou data_frame que es diu Y_f07 a partir de la taula que ja teníem cons
 En aquest cas, primer es crea una nova taula "Y" on hi ha les files coincidents (entre la taula Y_b07 i Y_f07) i les columnes d'aquestes, obtingudes amb la intersecció de les taules i amb l'ajuda del camp comú "iso_code" entre ambdues. La segona funció fa que creem una nova variable on es calculi el logaritme de casos entre les dues taules, que probablement més endavant s'hagin de fer servir.
 
       temp = filter(doxcgrt, is.na(RegionName), ymd(Date) == DAY)
+      
 Una nova variable anomenada "temp" on es filtren els valors de la taula _doxcgrt_ amb la data DAY i que el nom de regió sigui _NA_.
 
 
       X = select(temp, iso_code = CountryCode, ends_with("Index"), matches('^(C|E)._'), -ends_with('_Flag')) %>%
       rename_with(~str_sub(., 1, 2), matches('^(C|E)._'))
+      
 Utilitzant la llibreria _stringr_ es crea una taula X on hi ha les columnes "iso_code" equivalent a les sigles dels països, tal i com havíem dit anteriorment, totes aquelles que acaben amb la paraula "Index" com, per exemple, "StringencyIndex", "GovernmentResponseIndex", ...; 
 A més a més, hi haurà totes aquelles columnes que es diessin **CN_Flag** o **EN_Flag**, on N representa un dígit. Aquestes columnes passaran a dir-se C1,C2,C3,..., o E1,E2,E3... segons el prefix que tinguessin.
 
@@ -80,13 +82,8 @@ Filtratge per continent:
             europa_casos = filter(TaulaAux, continent == "Europe")
             oceania_casos = filter(TaulaAux, continent == "Oceania")
 
- Ara tenim 6 taules corresponents a cada continent, per fer-ho més visual, tenim aquestes dades a la taula _africa_casos_ :
- 
-            
-![](C:\Users\estel\Documents\GeinfUdg\2n CURS\ESTADÍSTICA\PRÀCTIQUES\Treball estadistica\AfricaCasos.png)
-
-
-Ara voldríem fer el sumatori per a cada columna _ConfirmedCases_ i _ConfirmedDeaths_ per tenir sobre quin total tenim les dades:
+Actualment tenim 6 taules corresponents a cada continent.
+A continuació, voldríem fer el sumatori per a cada columna _ConfirmedCases_ i _ConfirmedDeaths_ per tenir sobre quin total tenim les dades:
 
 _ConfirmedCases_ :
 
@@ -154,7 +151,6 @@ Així doncs, per mostrar visualment com és un exemple de relació numèrica-nu�
          xlab = "Nivell de rigorositat", ylab = "Frequencia",
          col = "purple")
 
-  ![](http://127.0.0.1:28001/graphics/d8032a61-02f1-4d2b-97f2-f49480c47bd0.png)
    
    - **Relació numèrica-categòrica:** Aquesta és una mica més diferent en relació a la primera ja que es tracta de relacionar una variable quantitativa amb una qualitativa. Sol ser una relació entre una població concreta i alguna xifra rellevant que ens permetrà saber (dins un conjunt) en quina posició es troba. 
 Nosaltres posem com exemple la relació de casos de covid per a cada continent. Els casos és una variable numèrica i els noms dels continents són la variable categòrica, d'aquesta manera podem visualitzar, aproximadament, quin és el nombre de casos respecte la resta de continents.
@@ -164,10 +160,6 @@ Aquest seria el codi que hem utilitzat per a construir el gràfic:
             library(ggplot2)
     ggplot(data, aes(x=ConfirmedCases, y=continent)) + geom_bar(stat="identity") +      scale_fill_brewer(palette="Oranges")
   
-  
-I aquesta és la imatge del gràfic:
-![Casos confirmats de covid](http://127.0.0.1:28001/graphics/a0e8ddfa-ede4-45dc-86a1-64e06f7d4973.png)
-
 
 Per exemple, podem estimar que a Oceania hi ha pocs casos en relació a la resta. A Oceania hi ha 7320 casos de covid, en canvi, a Àsia ja boregen els 1556201. Una dada molt distintiva és que a Nord Amèrica ja pràcticament arriben als 2500000 casos de covid.
   
@@ -186,13 +178,105 @@ Seguidament, el què fem és construir una taula de contingència amb aquestes d
       
 El resultat serà una taula bastant gran on s'hi veurà a l'esquerra el nom del continent i a sobre podrem veure diferents ajuts econòmics donats als continents.
 
-![]() hi va una imatge
-
-
 </ul>
 
 
 * **Pregunta 4: Utilitza els contrastos vistos a classes per treure conclusions o assumpcions que es poden fer amb les tres relacions de l’apartat anterior (numèrica-numèrica, numèrica-categòrica i categòrica-categòrica). Per cada un dels contrastos, específica les hipòtesis inicial i alternativa, quin és l’estadístic de contrast, el valor p i la decisió final envers les hipòtesis plantejades.**
+
+     - **Relació numèrica-numèrica:**
+En aquest cas hem considerat que la millor opció és fer un test d’independència.
+Per fer-ho més entenedor farem grups de percentatges de 20% per separar els Índex de Duresa de menys a més dur [0-20,21-40,41-60,61-80,81-100] així podrem veure quina freqüència tenen cada un dels grups de percentatge.
+
+El primer que farem és separar les freqüències en els grups i fer els cinc nivells de 20% .
+
+      frequencies = c(length(which(numnum <= 20)),length(which(numnum <= 40 & numnum >20)),length(which(numnum < 60 & numnum >40)),length(which(numnum < 80 & numnum >60)),length(which(numnum < 100 & numnum >80)))
+
+      nivells = c(20,20,20,20,20)
+
+Caldrà unir-los per poder fer el test:
+
+      taula_numnum = cbind(frequencies, nivells)
+
+Ara fem el test amb la taula resultant:
+
+      prop.test(taula_numnum, correct = FALSE)
+
+      5-sample test for equality of proportions without continuity correction
+
+      data:  taula_numnum
+      X-squared = 39.599, df = 4, p-value = 5.238e-08
+      alternative hypothesis: two.sided
+      sample estimates:
+         prop 1    prop 2    prop 3    prop 4    prop 5 
+      0.1304348 0.3548387 0.6491228 0.7647059 0.6428571
+
+   - **Relació numèrica-categòrica:**
+   
+A l’exercici 3 hem vist la relació entre els casos confirmats i els continents, ara veurem un exemple comparant els continents amb els casos confirmats i la població en tant per u per cada un d’ells. Hem volgut triar el test PiCuadrat (Chi-squared) ja que també ens pot anar bé de cares a fer una numèrica-categòrica o una categòrica-categòrica (ho veurem més endavant).
+
+Primer de tot, guardarem la suma dels casos confirmats de cada un dels continents.
+
+      sumaPaisos = c(Asia =  sum(filter(data,continent=="Asia")$ConfirmedCases),
+                 Africa = sum(filter(data,continent=="Africa")$ConfirmedCases),
+                     Europe = sum(filter(data,continent=="Europe")$ConfirmedCases),
+                     NorthAmerica = sum(filter(data,continent=="North America")$ConfirmedCases),
+                     Oceania = sum(filter(data,continent=="Oceania")$ConfirmedCases),
+                     SouthAmerica = sum(filter(data,continent=="South America")$ConfirmedCases))
+                     
+  
+  També caldrà guardar la població tant per u dels continents:
+  
+        poblacio = c(Asia =  0.5950,
+                     Africa = 0.1721,
+                     Europe = 0.0961,
+                   SouthAmerica = 0.0838,
+                   NorthAmerica = 0.0474,
+                     Oceania = 0.0056)
+
+      chisq.test(x = sumaPaisos, p = poblacio)
+
+      Chi-squared test for given probabilities
+
+      data:  sumaPaisos
+      X-squared = 54359040, df = 5, p-value < 2.2e-16
+ 
+ 
+
+   - **Relació categòrica-categòrica:**
+   
+Per fer aquesta relació també hem fet servir el test PiCuadrat (Chi-squared), com bé hem dit abans. El què farem serà força similar al que fèiem a l’exemple passat però amb alguna diferència.
+Hem hagut de dividir les freqüències en els índexs de suport econòmic en 6 parts (de molt baix a molt alt) i, seguidament, els compararem també amb la població de cada continent.
+
+Guardarem les freqüències separades depenent de l’índex:
+
+      Economia$EconomicSupportIndex
+
+       frequenciesEconomia = c(MoltBaix = length(which(indexSuportEc  <= 10)),
+                      Baix = length(which(indexSuportEc  <= 30 & indexSuportEc  >10)),
+                      MitjaBaix = length(which(indexSuportEc  < 50 & indexSuportEc  >30)),
+                      MitjaAlt = length(which(indexSuportEc  < 70 & indexSuportEc  >50)),
+                      Alt = length(which(indexSuportEc  < 90 & indexSuportEc  >70)),
+                      MoltAlt = length(which(indexSuportEc  < 100 & indexSuportEc  >90))
+                      )
+                      
+                      
+                      
+Finalment, també caldrà guardar la població tant per u dels continents (com ho hem fet abans) per tal d'obtenir els resultats finals que esperàvem:
+
+      poblacio = c(Asia =  0.5950,
+                     Africa = 0.1721,
+                     Europe = 0.0961,
+                   SouthAmerica = 0.0838,
+                   NorthAmerica = 0.0474,
+                     Oceania = 0.0056)
+
+      print(chisq.test(frequenciesEconomia,poblacioEconomia))
+
+      Pearson's Chi-squared test
+
+      data:  frequenciesEconomia and poblacioEconomia
+      X-squared = 30, df = 25, p-value = 0.2243
+
 
 
 ## PREGUNTA 5 I 6: Model predictiu lineal
@@ -208,8 +292,6 @@ La variable _StrignencyIndex_ en relació amb la _y_ presenta una regressió lin
       abline(v = 0, col="red")
 
 
-![Gràfic strtingencyIndex i data, model lineal]()
-
 Les següents variables amb qui _y_ formaria regressions lineals simples són _GovernmentResponseIndex_ i _ContainmentHealthIndex_. Fem el mateix procediment que a l'apartat anterior per a veure la regressió lineal:
 
       plot(x = data$y, y = data$ContainmentHealthIndex)
@@ -217,16 +299,23 @@ Les següents variables amb qui _y_ formaria regressions lineals simples són _G
       plot(x = data$y, y = data$EconomicSupportIndex)
       abline(v = 0, col="red")
       
- Els gràfics de dispersió corresponents a aquestes línies de codi serien
- 
- ![]()
- 
- i 
- 
- ![]()
- 
- 
 
 * **Pregunta 6: Utilitza aquest model per fer una predicció mitjana amb interval de confiança de la variable y al dia 15 de novembre, disposant únicament de les variables del conjunt _doxcgrt_.**
 
+Filtrem la taula _doxcgrt_ per quedar-nos només amb la informació amb data 15/11/2020:
+
+
+      nov15 = filter(doxcgrt,Date=="20201115")
+
+Hem trobat oportú agafar les variables C1_Flag i C2_Flag de la taula _doxcgrt_ ja que eren de les columnes amb menys files buides. 
+Farem servir la funció lm() per crear un model de regressió amb les variables prèviament mencionades:
+
+      mod1 <- lm(C1_Flag ~ C2_Flag, data=nov15)
+      dpred = tibble(C1_Flag = 1,C2_Flag=2)
+      
+Utilitzarem la comanda predict() per calcular l’interval de confiança:
+
+      predict(mod1,dpred,interval='confidence')
+
+Hem pogut observar que la variable Y seria 0.8812474.
 
